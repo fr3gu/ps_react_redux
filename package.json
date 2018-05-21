@@ -1,0 +1,53 @@
+{
+  "name": "fr3gu_react_flux",
+  "version": "1.0.0",
+  "description": "A test",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/flux": "^3.1.7",
+    "@types/keymirror": "^0.1.1",
+    "@types/lodash": "^4.14.108",
+    "@types/object-assign": "^4.0.30",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-router-dom": "^4.2.6",
+    "@types/reactstrap": "^5.0.25",
+    "@types/toastr": "^2.1.35",
+    "awesome-typescript-loader": "^5.0.0",
+    "bootstrap": "^4.1.1",
+    "flux": "^3.1.3",
+    "jquery": "^3.3.1",
+    "keymirror": "^0.1.1",
+    "lodash": "^4.17.10",
+    "object-assign": "^4.1.1",
+    "popper.js": "^1.14.3",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router-dom": "^4.2.2",
+    "toastr": "^2.1.4",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3",
+    "typings": "^2.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
