@@ -1,5 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractCSS = new ExtractTextPlugin('allstyles.css');
 const bundlePath = path.resolve(__dirname, "dist/");
 
 module.exports = {
@@ -14,7 +16,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: extractCSS.extract([ 'css-loader' ])
       },
       {
         test: /\.(ts|tsx)$/,
@@ -22,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [ 'style-loader', 'css-loader', 'less-loader' ]
+        use: extractCSS.extract([ 'css-loader', 'less-loader' ])
       }
     ]
   },
@@ -36,5 +38,5 @@ module.exports = {
     port: 3000,
     publicPath: "http://localhost:3000/dist"
   },
-  plugins: [ new webpack.HotModuleReplacementPlugin() ]
+  plugins: [ extractCSS, new webpack.HotModuleReplacementPlugin() ]
 };

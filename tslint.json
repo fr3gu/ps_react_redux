@@ -4,7 +4,7 @@
 	"jsRules": {},
 	"rules": {
 		"semicolon": [
-			false
+			true
 		],
 		"ter-indent": [
 			false
@@ -12,8 +12,7 @@
 		"ter-arrow-parens": false,
 		"array-bracket-spacing": false,
 		"max-line-length": [
-			true,
-			150
+			false
 		],
 		"trailing-comma": [
 			false

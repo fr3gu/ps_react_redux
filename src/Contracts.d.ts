@@ -1,18 +1,14 @@
-interface IAuthor {
-    id: string;
-    firstName: string;
-    lastName: string;
-}
-
 interface ICourse {
     id: string;
     title: string;
     authorId: string;
     category: string;
     length: string;
+    watchHref: string;
 }
 
-interface IAuthorErrorData {
+interface IAuthor {
+    id: string;
     firstName: string;
     lastName: string;
 }
@@ -29,26 +25,34 @@ interface IOptionData {
     text: string;
 }
 
-interface IInitialData {
+interface IInitialState {
     authors: IAuthor[];
     courses: ICourse[];
+    ajaxCallsInProgress: number;
 }
 
-//************************ ActionDatas */
+interface IConnectedState {
+    course: ICourse;
+    authors: IOptionData[];
+    ajaxCallsInProgress: number;
+}
+
+// ************************ ActionDatas */
 
 interface IActionData {
-    actionType: string;
-
+    type: string;
 }
 
-interface IAuthorActionData extends IActionData {
-    author: IAuthor;
+interface IErrorActionData extends IActionData {
+    error: any;
 }
 
 interface ICourseActionData extends IActionData {
-    course: ICourse;
+    course?: ICourse;
+    courses?: ICourse[];
 }
 
-interface IInitializeActionData extends IActionData {
-    initialData: IInitialData;
+interface IAuthorActionData extends IActionData {
+    author?: IAuthor;
+    authors?: IAuthor[];
 }
