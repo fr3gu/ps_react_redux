@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from "react"
+import React, { ChangeEvent, FormEvent } from "react";
 import { TextInput } from "../common/TextInput";
 import { SelectInput } from "../common/SelectInput";
 
@@ -11,8 +11,8 @@ interface ICourseFormProps {
     errors: ICourseErrorData;
 }
 
-export const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}: ICourseFormProps) => {
-    
+export const CourseForm = ({ course, allAuthors, onSave, onChange, saving, errors }: ICourseFormProps) => {
+
     return (
         <form>
         <h1>Manage Course</h1>

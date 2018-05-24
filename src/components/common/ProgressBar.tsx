@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 interface IProgressBarProps {
     interval: number;
@@ -19,7 +19,7 @@ export default class ProgressBar extends React.Component<IProgressBarProps, IPro
 
         self.state = {
             frame: 1
-        }
+        };
 
         self.isCancelled = false;
     }
@@ -37,8 +37,8 @@ export default class ProgressBar extends React.Component<IProgressBarProps, IPro
     componentDidMount() {
         const self = this;
         self.interval = setInterval(() => {
-            if(!self.isCancelled) {
-                self.setState(prevState => ({ 
+            if (!self.isCancelled) {
+                self.setState(prevState => ({
                     frame: prevState.frame + 1
                 }));
             }
@@ -52,17 +52,17 @@ export default class ProgressBar extends React.Component<IProgressBarProps, IPro
 
     render() {
         const self = this;
-        let dots = self.state.frame % (self.props.scale + 1);
-        var percent = (100 / self.props.scale) * dots;
-        let text = "";
-        while(dots > 0) {
-            text += ".";
-            dots--;
-        }
-        console.log(percent);
+        const dots = self.state.frame % (self.props.scale + 1);
+        const percent = (100 / self.props.scale) * dots;
+        // let text = "";
+        // while(dots > 0) {
+        //     text += ".";
+        //     dots--;
+        // }
+
         return (
             <div id="progress">
-                <div id="bar" style={{width: percent + "%"}}>&nbsp;</div>
+                <div id="bar" style={{ width: percent + "%" }}>&nbsp;</div>
             </div>
         );
     }

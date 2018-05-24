@@ -1,10 +1,10 @@
 interface ICourse {
     id: string;
     title: string;
-    authorId: string;
-    category: string;
-    length: string;
-    watchHref: string;
+    authorId?: string;
+    category?: string;
+    length?: string;
+    watchHref?: string;
 }
 
 interface IAuthor {
@@ -14,10 +14,10 @@ interface IAuthor {
 }
 
 interface ICourseErrorData {
-    title: string;
-    authorId: string;
-    category: string;
-    length: string;
+    title?: string;
+    authorId?: string;
+    category?: string;
+    length?: string;
 }
 
 interface IOptionData {

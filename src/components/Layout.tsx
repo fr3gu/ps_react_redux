@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Header } from "./common/Header"
+import { Header } from "./common/Header";
 import Home from "./home/Home";
 import { Courses } from "./courses/Courses";
 import About from "./about/About";
@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 class LayoutComponent extends React.Component<any> {
     render() {
         const self = this;
-    
+
         return (
             <div className="container-fluid">
                 <HashRouter>
@@ -37,7 +37,7 @@ class LayoutComponent extends React.Component<any> {
 function mapStateToProps(state: any, _ownProps: any) {
     return {
         loading: state.ajaxCallsInProgress > 0
-    }
+    };
 }
 
 export default connect(mapStateToProps)(LayoutComponent);

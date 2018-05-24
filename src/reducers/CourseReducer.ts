@@ -4,12 +4,8 @@ import { ActionTypes } from "../Constants";
 import * as _ from "lodash";
 import InitialState from "./InitialState";
 
-var _clone = function(item: any): any {
-	return JSON.parse(JSON.stringify(item)); //return cloned copy so that the item is passed by value instead of by reference
-};
-
 export default function courseReducer(state: ICourse[] = InitialState.courses, action: ICourseActionData) {
-    switch(action.type) {
+    switch (action.type) {
         case ActionTypes.COURSE_LOAD_SUCCESS:
             return action.courses;
 
@@ -24,7 +20,7 @@ export default function courseReducer(state: ICourse[] = InitialState.courses, a
                 ...state.filter(c => c.id !== action.course.id),
                 Object.assign({}, action.course)
             ];
-        
+
         default:
             return state;
     }

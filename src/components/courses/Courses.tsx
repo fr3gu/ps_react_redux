@@ -28,7 +28,7 @@ class CoursesComponent extends React.Component<IConnectedState & IConnectedDispa
     constructor(props: IConnectedState & IConnectedDispatch & ICoursesProps, context: any) {
         super(props, context);
 
-        var self = this;
+        const self = this;
 
         self.state = {
             courses: []
@@ -37,13 +37,12 @@ class CoursesComponent extends React.Component<IConnectedState & IConnectedDispa
 
     onClickDelete(id: string, event: Event) {
         event.preventDefault();
-        var self = this;
+        const self = this;
         self.props.deleteCourse(id);
-
     }
 
     render() {
-        var self = this;
+        const self = this;
 
         return (
             <div>
@@ -59,7 +58,6 @@ const mapStateToProps = (state: ICoursesState, _ownProps: ICoursesProps): IConne
     courses: state.courses
 });
 
-/// ignore
 const mapDispatchToProps = (dispatch: Dispatch<ICourseActionData, any>): IConnectedDispatch => ({
     deleteCourse: (id: string) => {
         dispatch(CourseActions.deleteCourse(id));

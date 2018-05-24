@@ -1,29 +1,29 @@
-import * as React from 'react';
-import * as TestUtils from 'react-dom/test-utils';
-import { createRenderer } from 'react-test-renderer/shallow';
+import * as React from "react";
+import * as TestUtils from "react-dom/test-utils";
+import { createRenderer } from "react-test-renderer/shallow";
 
-import { Header } from '../common/Header';
+import { Header } from "../common/Header";
 
 function setup() {
-    let props: any = {
+    const props: any = {
         loading: false
     };
-    
-    let renderer = createRenderer();
+
+    const renderer = createRenderer();
     renderer.render(<Header {...props} />);
-    let output = renderer.getRenderOutput();
+    const output = renderer.getRenderOutput();
 
     return {
         props,
         output,
         renderer
-    }
+    };
 }
 
-describe('<Counter />', () => {
-  it('renders form and h1', () => {
-    const { output } = setup();
+describe("<Header />", () => {
+    it("renders section#header", () => {
+        const { output } = setup();
 
-    expect(output.type).toBe("form");
-  })
+        expect(output.type).toBe("section");
+    });
 });

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react"
+import React, { ChangeEvent } from "react";
 
 interface ITextInputProps {
     name: string;
@@ -11,7 +11,7 @@ interface ITextInputProps {
 
 export const TextInput = (props: ITextInputProps) => {
     let formControlClassName = "form-control";
-    if(props.error && props.error.length > 0) {
+    if (props.error && props.error.length > 0) {
         formControlClassName += " is-invalid";
     }
 

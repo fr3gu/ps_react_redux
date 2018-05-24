@@ -11,12 +11,13 @@ import { CourseForm } from "./CourseForm";
 import { CourseErrorData, Course } from "../../Models";
 import { RouteComponentProps } from "react-router-dom";
 import toastr from "toastr";
+import { authorsFormattedForDropdown } from "../../selectors/Selectors";
 
-interface ICourseParams {
+export interface ICourseParams {
     id: string;
 }
 
-interface IManageCourseState {
+export interface IManageCourseState {
     courses: ICourse[];
     course: ICourse;
     errors: ICourseErrorData;
@@ -24,7 +25,7 @@ interface IManageCourseState {
     saving: boolean;
 }
 
-interface IManageCourseProps extends RouteComponentProps<ICourseParams> { }
+export interface IManageCourseProps extends RouteComponentProps<ICourseParams> { }
 
 interface IConnectedState {
     course: ICourse;
@@ -36,12 +37,12 @@ interface IConnectedDispatch {
     saveCourse: (course: ICourse) => Promise<void>;
 }
 
-class ManageCourseComponent extends React.Component<IConnectedState & IConnectedDispatch & IManageCourseProps, IManageCourseState> {
+export class ManageCourseComponent extends React.Component<IConnectedState & IConnectedDispatch & IManageCourseProps, IManageCourseState> {
 
     constructor(props: IConnectedState & IConnectedDispatch & IManageCourseProps, context: any) {
         super(props, context);
 
-        var self = this;
+        const self = this;
 
         self.state = {
             courses: Array<ICourse>(),
@@ -57,15 +58,15 @@ class ManageCourseComponent extends React.Component<IConnectedState & IConnected
 
     componentWillReceiveProps(nextProps: IConnectedState & IConnectedDispatch & IManageCourseProps) {
         const self = this;
-        if(self.props.course.id !== nextProps.course.id) {
-            this.setState({course: Object.assign({}, nextProps.course)});
+        if (self.props.course.id !== nextProps.course.id) {
+            this.setState({ course: Object.assign({}, nextProps.course) });
         }
     }
 
     updateCourseState(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const self = this;
         const field = event.target.name;
-        let updatedCourse = Object.assign({}, self.state.course);
+        const updatedCourse = Object.assign({}, self.state.course);
         (updatedCourse as any)[field] = event.target.value;
         self.setState({ course: updatedCourse });
 
@@ -73,42 +74,48 @@ class ManageCourseComponent extends React.Component<IConnectedState & IConnected
 
     redirect() {
         const self = this;
-        self.setState({saving: false});
+        self.setState({ saving: false });
         toastr.success("Course created successfully!");
-        self.props.history.push("/courses");        
+        self.props.history.push("/courses");
+    }
+
+    courseFormIsValid() {
+        const self = this;
+        let formIsValid = true;
+        const errors = new CourseErrorData();
+
+        if (self.state.course.title.length < 5) {
+            errors.title = "Title must be at least 5 characters.";
+            formIsValid = false;
+        }
+
+        self.setState({ errors });
+
+        return formIsValid;
     }
 
     saveCourse(event: FormEvent<HTMLButtonElement>) {
         event.preventDefault();
         const self = this;
-        self.setState({saving: true});
-        console.log(self.state.course);
+
+        if (!self.courseFormIsValid()) { return; }
+
+        self.setState({ saving: true });
+
         self.props.saveCourse(self.state.course)
             .then(() => {
                 self.redirect();
             }).catch((error) => {
                 toastr.error(error);
-                //const errorData = {
-                //    title: error,
-                //    authorId: "",
-                //    category: "",
-                //    length: ""
-                //};
-
-                self.setState({
-                    saving: false,
-                    //errors: errorData
-                });
-                
-                console.log("fel!", error);
+                self.setState({ saving: false });
             });
     }
 
     render() {
-        var self = this;
+        const self = this;
 
         return (
-            <CourseForm 
+            <CourseForm
                 course={self.state.course}
                 errors={self.state.errors}
                 allAuthors={self.props.authors}
@@ -122,25 +129,25 @@ class ManageCourseComponent extends React.Component<IConnectedState & IConnected
 
 function getCourseById(courses: ICourse[], id: string) {
     const theCourses = courses.filter(course => course.id === id);
-    if(theCourses.length > 0) {
+    if (theCourses.length > 0) {
         return theCourses[0];
     }
     return new Course();
 }
 
 function mapStateToProps(state: IManageCourseState, ownProps: IManageCourseProps): IConnectedState {
-    var id = ownProps.match.params.id;
+    const id = ownProps.match.params.id;
     let theCourse = new Course();
-    if(id && state.courses.length > 0) {
+    if (id && state.courses.length > 0) {
         theCourse = getCourseById(state.courses, id);
     }
-    let authorsFormattedForDropdown = state.authors.map((author: IAuthor) => { return { value: author.id, text: author.firstName + " " + author.lastName };} );
+
     return {
         course: theCourse,
         errors: new CourseErrorData(),
-        authors: authorsFormattedForDropdown
-    };  
-};
+        authors: authorsFormattedForDropdown(state.authors)
+    };
+}
 
 const mapDispatchToProps = (dispatch: Dispatch<ICourseActionData, any>): IConnectedDispatch => ({
     saveCourse: (course: ICourse) => {

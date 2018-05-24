@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react"
+import React, { ChangeEvent } from "react";
 
 interface ISelectInputProps {
     name: string;
@@ -12,7 +12,7 @@ interface ISelectInputProps {
 
 export const SelectInput = (props: ISelectInputProps) => {
     let formControlClassName = "form-control";
-    if(props.error && props.error.length > 0) {
+    if (props.error && props.error.length > 0) {
         formControlClassName += " is-invalid";
     }
 

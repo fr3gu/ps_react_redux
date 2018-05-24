@@ -20,11 +20,11 @@ export function loadAuthors() {
     return (dispatch: (actionData: IAuthorActionData) => IAuthorActionData) => {
         dispatch(ajaxCallBegin());
         AuthorApi.getAllAuthors().then((authors: IAuthor[]) => {
-            dispatch(loadAuthorsSuccess(authors))
+            dispatch(loadAuthorsSuccess(authors));
             }).catch(error => {
                 throw error;
             });
-        }
+        };
 }
 
 // export function deleteAuthor(id: string) {

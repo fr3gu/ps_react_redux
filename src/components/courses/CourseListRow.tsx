@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface ICourseListRowProps {
@@ -8,7 +8,7 @@ interface ICourseListRowProps {
 export const CourseListRow = (props: ICourseListRowProps) => {
     const courseLink = "/course/" + props.course.id;
     const course = props.course;
-    
+
     return (
         <tr>
             <td><Link to={course.watchHref} target="_blank">Watch</Link></td>

@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 import { NavLink } from "react-router-dom";
-import "./Header.less"
+import "./Header.less";
 import LoadingDots from "./LoadingDots";
 import ProgressBar from "./ProgressBar";
 
@@ -8,7 +8,7 @@ interface IHeaderProps {
     loading: boolean;
 }
 
-export const Header = ({loading}: IHeaderProps) => {
+export const Header = ({ loading }: IHeaderProps) => {
     return (
         <section id="header">
             { loading && <ProgressBar interval={100} scale={20} /> }
@@ -18,5 +18,5 @@ export const Header = ({loading}: IHeaderProps) => {
                 <NavLink to="/about" activeClassName="active" exact>About</NavLink>&nbsp;
             </nav>
         </section>
-    )
-}
+    );
+};

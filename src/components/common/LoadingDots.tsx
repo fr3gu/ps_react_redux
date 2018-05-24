@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 interface ILoadingDotsProps {
     interval: number;
@@ -19,7 +19,7 @@ export default class LoadingDots extends React.Component<ILoadingDotsProps, ILoa
 
         self.state = {
             frame: 1
-        }
+        };
 
         self.isCancelled = false;
     }
@@ -37,8 +37,8 @@ export default class LoadingDots extends React.Component<ILoadingDotsProps, ILoa
     componentDidMount() {
         const self = this;
         self.interval = setInterval(() => {
-            if(!self.isCancelled) {
-                self.setState(prevState => ({ 
+            if (!self.isCancelled) {
+                self.setState(prevState => ({
                     frame: prevState.frame + 1
                 }));
             }
@@ -54,10 +54,10 @@ export default class LoadingDots extends React.Component<ILoadingDotsProps, ILoa
         const self = this;
         let dots = self.state.frame % (self.props.dots + 1);
         let text = "";
-        while(dots > 0) {
+        while (dots > 0) {
             text += ".";
-            dots--;
+            dots = dots - 1;
         }
-        return <span {...self.props}>{text}&nbsp;</span>
+        return <span {...self.props}>{text}&nbsp;</span>;
     }
 }

@@ -3,6 +3,11 @@
 	"extends": "tslint-config-airbnb",
 	"jsRules": {},
 	"rules": {
+		"quotemark": [ true, "double" ],
+		"no-this-assignment": false,
+		"no-duplicate-imports": {
+			"severity": "warning"
+		},
 		"semicolon": [
 			true
 		],
